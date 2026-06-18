@@ -80,7 +80,6 @@ export default function Home() {
                   'Learn how to position yourself so customers come to you',
                   'Discover where your best customers are hiding',
                   'Get a simple follow-up system that closes deals',
-                  'See the AI tools that make follow-up effortless — even if you\'re not techy',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
@@ -97,6 +96,19 @@ export default function Home() {
                     <span className="text-sm sm:text-base text-gray-700">{item}</span>
                   </li>
                 ))}
+                {/* AI bullet — styled separately */}
+                <li className="flex items-center gap-3">
+                  <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                    <svg className="size-3 text-white" fill="none" viewBox="0 0 12 12">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="text-sm sm:text-base text-gray-700">
+                    See the{' '}
+                    <span className="font-bold text-base sm:text-lg text-gray-900">AI tools</span>
+                    {' '}that make follow-up effortless — even if you're not techy
+                  </span>
+                </li>
               </ul>
 
               {/* Countdown */}
