@@ -1,58 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const PUBLIC_PATHS = ['/', '/login', '/register'];
+import { createServerClient } from '@supabase/ssr';
 
 export async function middleware(request: NextRequest) {
+  const response = NextResponse.next({
+    request: { headers: request.headers },
+  });
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            request.cookies.set(name, value);
+            response.cookies.set(name, value, options);
+          });
+        },
+      },
+    }
+  );
+
+  // Refresh session — required for Server Components to pick up auth state
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { pathname } = request.nextUrl;
 
-  // Allow public paths and API routes through
-  if (
-    PUBLIC_PATHS.includes(pathname) ||
-    pathname.startsWith('/api/') ||
-    pathname.startsWith('/_next/') ||
-    pathname.startsWith('/favicon')
-  ) {
-    return NextResponse.next();
-  }
-
-  // Check for Supabase session cookie
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-  // Extract auth token from cookies
-  const cookieHeader = request.headers.get('cookie') || '';
-  const tokenMatch = cookieHeader.match(/sb-[^-]+-auth-token=([^;]+)/);
-  const accessToken = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
-
-  if (!accessToken) {
+  // Protect dashboard — redirect to login if no session
+  if (pathname.startsWith('/dashboard') && !user) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('next', pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  try {
-    const parsed = JSON.parse(accessToken);
-    const token = Array.isArray(parsed) ? parsed[0] : parsed;
-
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    });
-
-    const { data: { user } } = await supabase.auth.getUser(token);
-
-    if (!user) {
-      const loginUrl = new URL('/login', request.url);
-      loginUrl.searchParams.set('next', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-  } catch {
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('next', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
