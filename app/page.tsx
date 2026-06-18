@@ -42,12 +42,12 @@ export default function Home() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA — icon only */}
           <Link
-            href="/dashboard"
-            className="flex items-center gap-1.5 shrink-0 text-sm font-medium text-gray-800 hover:text-blue-600 transition-colors whitespace-nowrap"
+            href="/login"
+            className="flex items-center justify-center size-9 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-600 transition-colors shrink-0"
+            title="Go to Dashboard"
           >
-            Go to Dashboard
             <ArrowRight className="size-4" />
           </Link>
         </div>
