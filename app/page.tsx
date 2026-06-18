@@ -1,23 +1,83 @@
-export default function Page() {
+import { LeadForm } from '@/components/lead-form';
+import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
+export default function Home() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center bg-[color:light-dark(#fff,#000)] text-[color:light-dark(#000,#fff)]">
-      <svg
-        aria-hidden="true"
-        className="size-20"
-        fill="none"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      >
-        <path
-          d="M14.2 14.2H17V6.9375C17 4.76288 15.2371 3 13.0625 3H5.8V5.8M14.2 14.2V7.79063L7.79062 14.2H14.2ZM14.2 14.2V17H6.9375C4.76288 17 3 15.2371 3 13.0625V5.8H5.8M5.8 5.8V12.2313L12.2313 5.8H5.8Z"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <p className="absolute left-1/2 top-[calc(50%+56px)] -translate-x-1/2 whitespace-nowrap text-sm font-medium text-muted-foreground">
-        Your v0 generation will show here.
-      </p>
-    </main>
-  )
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Header */}
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-primary">LeadFlow</h1>
+            <p className="text-xs text-muted-foreground">CRM for Small Businesses</p>
+          </div>
+          <Link href="/dashboard">
+            <Button variant="outline">Dashboard</Button>
+          </Link>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground">
+                Capture Every Lead
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Simple, fast lead management designed for small businesses. Start tracking your prospects today.
+              </p>
+            </div>
+
+            {/* Benefits */}
+            <div className="space-y-3">
+              {[
+                'Quick lead capture in seconds',
+                'Organize leads by status',
+                'Never lose a prospect again',
+              ].map((benefit) => (
+                <div key={benefit} className="flex items-center gap-3">
+                  <div className="flex-shrink-0 size-5 rounded-full bg-primary/20 flex items-center justify-center">
+                    <svg className="size-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="text-foreground">{benefit}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-sm text-muted-foreground italic">
+              Built with Next.js, Supabase, and Tailwind CSS for reliability and speed.
+            </p>
+          </div>
+
+          {/* Form */}
+          <div className="flex justify-center md:justify-end">
+            <LeadForm />
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-20 grid grid-cols-3 gap-4 sm:gap-8">
+          {[
+            { label: 'Leads Captured', value: '∞' },
+            { label: 'Status Levels', value: '5' },
+            { label: 'Search & Filter', value: '✓' },
+          ].map((stat) => (
+            <Card key={stat.label} className="text-center">
+              <CardContent className="pt-6">
+                <p className="text-2xl sm:text-3xl font-bold text-primary">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-2">{stat.label}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
 }
