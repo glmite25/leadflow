@@ -47,7 +47,7 @@ function LoginForm() {
       <div className="w-full max-w-md">
 
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2.5 mb-8">
+        <Link href="/" className="flex items-center justify-center gap-2.5 mb-8 hover:opacity-80 transition-opacity">
           <div className="size-9 rounded-xl bg-blue-600 flex items-center justify-center">
             <Zap className="size-5 text-white" />
           </div>
@@ -55,7 +55,7 @@ function LoginForm() {
             <p className="text-base font-bold text-gray-900">LeadFlow</p>
             <p className="text-[10px] text-gray-400 mt-0.5">CRM for Small Businesses</p>
           </div>
-        </div>
+        </Link>
 
         {/* Card */}
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-6 py-8">

@@ -136,18 +136,26 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         {/* Interest */}
         <div className="space-y-1.5">
           <label htmlFor="interest" className="text-sm font-medium text-gray-700">
-            Interest
+            What can we help you with?
           </label>
-          <input
+          <select
             id="interest"
             name="interest"
-            type="text"
             value={formData.interest}
-            onChange={handleChange}
-            placeholder="What brings you here?"
+            onChange={(e) => setFormData((prev) => ({ ...prev, interest: e.target.value }))}
             disabled={loading}
-            className="w-full h-11 px-3.5 rounded-lg border border-gray-300 bg-white text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          />
+            className="w-full h-11 px-3.5 rounded-lg border border-gray-300 bg-white text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors appearance-none"
+          >
+            <option value="">-- Pick one --</option>
+            <option value="I want to get more customers">I want to get more customers</option>
+            <option value="I need a website or landing page">I need a website or landing page</option>
+            <option value="I want to follow up with my leads automatically">I want to follow up with my leads automatically</option>
+            <option value="I need help managing my customers">I need help managing my customers</option>
+            <option value="I want to grow on social media">I want to grow on social media</option>
+            <option value="I need a sales or marketing system">I need a sales or marketing system</option>
+            <option value="I just want to learn more">I just want to learn more</option>
+            <option value="Something else">Something else</option>
+          </select>
         </div>
 
         {/* Error */}
