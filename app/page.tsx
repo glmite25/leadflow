@@ -80,6 +80,7 @@ export default function Home() {
                   'Learn how to position yourself so customers come to you',
                   'Discover where your best customers are hiding',
                   'Get a simple follow-up system that closes deals',
+                  'See the AI tools that make follow-up effortless — even if you\'re not techy',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
