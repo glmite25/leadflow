@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Lock, Send, Users } from 'lucide-react';
+import { Lock, Send, Users, ExternalLink } from 'lucide-react';
+
+// WhatsApp group link — set NEXT_PUBLIC_WHATSAPP_GROUP_URL in your .env.local
+const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || '';
 
 interface LeadFormProps {
   onSuccess?: () => void;
@@ -75,8 +78,8 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
           <Users className="size-5 text-white" />
         </div>
         <div>
-          <p className="text-base font-bold text-gray-900 leading-tight">Get Started</p>
-          <p className="text-sm text-gray-400 leading-tight mt-0.5">Tell us about your lead</p>
+          <p className="text-base font-bold text-gray-900 leading-tight">Reserve Your Free Spot</p>
+          <p className="text-sm text-gray-400 leading-tight mt-0.5">Limited slots — sign up now</p>
         </div>
       </div>
 
@@ -136,7 +139,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         {/* Interest */}
         <div className="space-y-1.5">
           <label htmlFor="interest" className="text-sm font-medium text-gray-700">
-            What can we help you with?
+            What's your biggest challenge right now?
           </label>
           <select
             id="interest"
@@ -146,14 +149,14 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             disabled={loading}
             className="w-full h-11 px-3.5 rounded-lg border border-gray-300 bg-white text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors appearance-none"
           >
-            <option value="">-- Pick one --</option>
-            <option value="I want to get more customers">I want to get more customers</option>
-            <option value="I need a website or landing page">I need a website or landing page</option>
-            <option value="I want to follow up with my leads automatically">I want to follow up with my leads automatically</option>
-            <option value="I need help managing my customers">I need help managing my customers</option>
-            <option value="I want to grow on social media">I want to grow on social media</option>
-            <option value="I need a sales or marketing system">I need a sales or marketing system</option>
-            <option value="I just want to learn more">I just want to learn more</option>
+            <option value="">-- Select one --</option>
+            <option value="I don't know how to get customers">I don't know how to get customers</option>
+            <option value="People show interest but never buy">People show interest but never buy</option>
+            <option value="I don't know how to price my services">I don't know how to price my services</option>
+            <option value="I have no online presence">I have no online presence</option>
+            <option value="I struggle with follow-up">I struggle with follow-up</option>
+            <option value="I don't know how to market myself">I don't know how to market myself</option>
+            <option value="I'm just starting out">I'm just starting out</option>
             <option value="Something else">Something else</option>
           </select>
         </div>
@@ -167,11 +170,8 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
 
         {/* Success */}
         {success && (
-          <div className="rounded-xl bg-green-50 border border-green-100 px-4 py-4 space-y-1">
-            <p className="text-sm font-semibold text-green-800">🎉 We've received your request!</p>
-            <p className="text-xs text-green-700 leading-relaxed">
-              Thanks for reaching out. We'll be in touch shortly to discuss how we can help your business get more paying customers.
-            </p>
+          <div className="rounded-lg bg-green-50 border border-green-100 px-3.5 py-2.5 text-sm text-green-700">
+            Your lead has been saved successfully.
           </div>
         )}
 
@@ -189,7 +189,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
           ) : (
             <>
               <Send className="size-4" />
-              Get Started
+              Reserve My Free Spot
             </>
           )}
         </button>
@@ -198,7 +198,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         <div className="flex items-center justify-center gap-1.5 pt-0.5">
           <Lock className="size-3 text-gray-400 shrink-0" />
           <p className="text-xs text-gray-400">
-            We respect your privacy. Your information is safe with us.
+            100% free. No spam. We'll only contact you about the class.
           </p>
         </div>
       </form>

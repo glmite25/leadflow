@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { X, User, Phone, Mail, Tag, Calendar, Loader2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { X, User, Phone, Mail, Tag, Calendar, Loader2, MessageCircle } from 'lucide-react';
 import { Lead, LeadStatus, LEAD_STATUSES, STATUS_COLORS } from '@/lib/types';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
@@ -20,6 +20,7 @@ export function LeadDetailPanel({
   isUpdating,
 }: LeadDetailPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const [waType, setWaType] = useState<'whatsapp' | 'business'>('whatsapp');
 
   // Close on Escape
   useEffect(() => {
@@ -175,6 +176,46 @@ export function LeadDetailPanel({
                     );
                   })()}
                 </div>
+              </div>
+
+              {/* WhatsApp */}
+              <div>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-3">Message on WhatsApp</p>
+                {/* Type toggle */}
+                <div className="flex rounded-lg border border-gray-200 overflow-hidden mb-3 text-xs font-medium">
+                  <button
+                    onClick={() => setWaType('whatsapp')}
+                    className={cn(
+                      'flex-1 py-2 transition-colors',
+                      waType === 'whatsapp'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-white text-gray-500 hover:bg-gray-50'
+                    )}
+                  >
+                    WhatsApp
+                  </button>
+                  <button
+                    onClick={() => setWaType('business')}
+                    className={cn(
+                      'flex-1 py-2 transition-colors border-l border-gray-200',
+                      waType === 'business'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-white text-gray-500 hover:bg-gray-50'
+                    )}
+                  >
+                    WhatsApp Business
+                  </button>
+                </div>
+                {/* Message button */}
+                <a
+                  href={`https://${waType === 'business' ? 'api' : 'wa'}.whatsapp.com/send?phone=${lead.phone.replace(/\D/g, '')}&text=Hi ${encodeURIComponent(lead.name)}, thanks for signing up!`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full h-10 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-colors"
+                >
+                  <MessageCircle className="size-4 shrink-0" />
+                  Message {lead.name.split(' ')[0]}
+                </a>
               </div>
             </div>
           </>

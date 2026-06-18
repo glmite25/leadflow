@@ -52,39 +52,47 @@ export default function Home() {
               {/* Badge */}
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-blue-600">
                 <span className="size-1.5 rounded-full bg-blue-500 inline-block" />
-                Helping Nigerian Businesses Grow
+                Built for Small Businesses
               </span>
 
               {/* Headline */}
               <div>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
-                  I Help Nigerian Businesses
+                  Capture Every Lead.
                 </h1>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
-                  Get More{' '}
-                  <span className="text-blue-600">Paying Customers.</span>
+                  Grow Your{' '}
+                  <span className="text-blue-600">Business.</span>
                 </h1>
               </div>
 
               {/* Subtext */}
               <p className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
-                Most businesses don&apos;t have a lead system. I build systems that turn
-                attention into paying customers — using WhatsApp automation, CRM
-                pipelines, and AI-powered content funnels.
+                LeadFlow helps you capture, organize, and manage leads in one
+                place — so you can focus on what matters most: closing deals.
               </p>
 
               {/* Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1">
                 {[
-                  { value: '20+', label: 'Lead Systems Built' },
-                  { value: '15+', label: 'Automations Deployed' },
-                  { value: '10+', label: 'Funnels Created' },
-                  { value: '30+', label: 'Businesses Supported' },
-                ].map(({ value, label }) => (
-                  <div key={label} className="flex flex-col">
-                    <span className="text-2xl font-extrabold text-blue-600 leading-none">{value}</span>
-                    <span className="text-xs text-gray-500 mt-1 leading-snug">{label}</span>
-                  </div>
+                  'Quick lead capture in seconds',
+                  'Organize leads by status',
+                  'Never lose a prospect again',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                      <svg className="size-3 text-white" fill="none" viewBox="0 0 12 12">
+                        <path
+                          d="M2 6l3 3 5-5"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-sm sm:text-base text-gray-700">{item}</span>
+                  </li>
                 ))}
               </div>
 
@@ -92,8 +100,8 @@ export default function Home() {
               <div className="flex items-start gap-2.5 pt-1">
                 <Shield className="size-4 text-gray-400 mt-0.5 shrink-0" />
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  No complicated setup. No learning curve.<br />
-                  Just leads, organized and ready to close.
+                  100% free. No catch. No credit card.<br />
+                  Just show up ready to learn and take action.
                 </p>
               </div>
             </div>
@@ -117,9 +125,9 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-bold text-gray-900">WhatsApp Automation</p>
+                <p className="text-sm font-bold text-gray-900">Leads Captured</p>
                 <p className="text-xs text-gray-400 mt-1 leading-snug">
-                  Follow up with leads<br className="hidden sm:block" /> automatically on WhatsApp
+                  Unlimited leads, captured<br className="hidden sm:block" /> and stored securely
                 </p>
               </div>
             </div>
@@ -127,12 +135,12 @@ export default function Home() {
             {/* CRM Pipeline */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex items-center gap-4">
               <div className="size-12 rounded-xl bg-violet-500 flex items-center justify-center shrink-0">
-                <Filter className="size-5 text-white" />
+                <span className="text-xl font-bold text-white">5</span>
               </div>
               <div>
-                <p className="text-sm font-bold text-gray-900">CRM Pipeline</p>
+                <p className="text-sm font-bold text-gray-900">Status Levels</p>
                 <p className="text-xs text-gray-400 mt-1 leading-snug">
-                  Track leads from New to Customer<br className="hidden sm:block" /> with a simple pipeline
+                  Track leads from New to Customer<br className="hidden sm:block" /> with our simple pipeline
                 </p>
               </div>
             </div>
@@ -143,9 +151,9 @@ export default function Home() {
                 <Zap className="size-5 text-white" />
               </div>
               <div>
-                <p className="text-sm font-bold text-gray-900">AI Content Funnels</p>
+                <p className="text-sm font-bold text-gray-900">Search &amp; Filter</p>
                 <p className="text-xs text-gray-400 mt-1 leading-snug">
-                  Turn attention into customers<br className="hidden sm:block" /> with AI-powered funnels
+                  Find any lead instantly with<br className="hidden sm:block" /> powerful search and filters
                 </p>
               </div>
             </div>
@@ -156,24 +164,24 @@ export default function Home() {
         <section className="border-t border-gray-200 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <p className="text-center text-sm font-medium text-gray-500 mb-8">
-              Trusted by Nigerian businesses and entrepreneurs
+              Trusted by small businesses and entrepreneurs
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               {[
                 {
                   icon: Shield,
-                  label: 'Secure & Reliable',
-                  sub: 'Your data is encrypted and safe',
+                  label: 'Service Businesses',
+                  sub: 'Freelancers, consultants, coaches, and agency owners',
                 },
                 {
                   icon: Zap,
-                  label: 'AI-Powered Systems',
-                  sub: 'Built with the latest automation tools',
+                  label: 'Fast & Simple',
+                  sub: 'Get started in under 60 seconds',
                 },
                 {
                   icon: Heart,
-                  label: 'Made for Nigeria',
-                  sub: 'Built specifically for Nigerian businesses',
+                  label: 'Made for You',
+                  sub: 'Built specifically for small businesses',
                 },
               ].map(({ icon: Icon, label, sub }) => (
                 <div key={label} className="flex flex-col items-center gap-2">

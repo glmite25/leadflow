@@ -7,6 +7,5 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase credentials. Please check your environment variables.');
 }
 
-// Cookie-based browser client — session is stored in cookies so the
-// middleware (which also reads cookies) can always see the auth state.
+// Browser client — used in all client components
 export const supabase = createBrowserClient(supabaseUrl, supabaseKey);
