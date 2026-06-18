@@ -1,4 +1,5 @@
 import { LeadForm } from '@/components/lead-form';
+import { CountdownTimer } from '@/components/countdown-timer';
 import {
   Filter,
   Shield,
@@ -52,32 +53,33 @@ export default function Home() {
               {/* Badge */}
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-blue-600">
                 <span className="size-1.5 rounded-full bg-blue-500 inline-block" />
-                Built for Small Businesses
+                Free Class — Limited Spots
               </span>
 
               {/* Headline */}
               <div>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
-                  Capture Every Lead.
+                  How to Get Your First
                 </h1>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
-                  Grow Your{' '}
-                  <span className="text-blue-600">Business.</span>
+                  <span className="text-blue-600">10 Paying Customers</span>
+                </h1>
+                <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
+                  Without Paid Ads.
                 </h1>
               </div>
 
               {/* Subtext */}
               <p className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
-                LeadFlow helps you capture, organize, and manage leads in one
-                place — so you can focus on what matters most: closing deals.
+                A free, practical class for Nigerian business owners and freelancers who want more paying customers — without spending on ads or guessing what to do next.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1">
+              {/* Checklist */}
+              <ul className="space-y-3">
                 {[
-                  'Quick lead capture in seconds',
-                  'Organize leads by status',
-                  'Never lose a prospect again',
+                  'Learn how to position yourself so customers come to you',
+                  'Discover where your best customers are hiding',
+                  'Get a simple follow-up system that closes deals',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
@@ -94,7 +96,10 @@ export default function Home() {
                     <span className="text-sm sm:text-base text-gray-700">{item}</span>
                   </li>
                 ))}
-              </div>
+              </ul>
+
+              {/* Countdown */}
+              <CountdownTimer />
 
               {/* Trust note */}
               <div className="flex items-start gap-2.5 pt-1">
