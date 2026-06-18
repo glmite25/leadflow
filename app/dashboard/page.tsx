@@ -15,6 +15,7 @@ import {
   Search,
   SlidersHorizontal,
   XCircle,
+  Download,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -83,6 +84,38 @@ export default function Dashboard() {
     const timer = setTimeout(fetchLeads, 300);
     return () => clearTimeout(timer);
   }, [search, statusFilter, fetchLeads]);
+
+  // ─── Export CSV ─────────────────────────────────────────────────────────────
+  const handleExportCsv = useCallback(() => {
+    if (leads.length === 0) return;
+
+    const headers = ['Name', 'Phone', 'Email', 'Interest', 'Status', 'Created At'];
+    const rows = leads.map((lead) => [
+      lead.name,
+      lead.phone,
+      lead.email || '',
+      lead.interest || '',
+      lead.status,
+      lead.created_at,
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((row) =>
+        row.map((val) => `"${String(val).replace(/"/g, '""')}"`).join(',')
+      ),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `leads_export_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, [leads]);
 
   // ─── Status update ──────────────────────────────────────────────────────────
   const handleStatusChange = useCallback(
@@ -156,6 +189,22 @@ export default function Dashboard() {
               className="pl-8 h-8 text-sm bg-gray-50 border-gray-200 focus-visible:bg-white w-full"
             />
           </div>
+
+          {/* Export Button */}
+          <button
+            onClick={handleExportCsv}
+            disabled={leads.length === 0}
+            className={cn(
+              "h-8 px-3 rounded-lg border text-xs font-medium inline-flex items-center gap-1.5 transition-colors shrink-0",
+              leads.length === 0
+                ? "bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed"
+                : "bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:bg-gray-100"
+            )}
+            title="Export leads to CSV (Google Sheets compatible)"
+          >
+            <Download className="size-3.5" />
+            <span>Export CSV</span>
+          </button>
 
           {/* Status filter pills */}
           <div className="flex items-center gap-1.5 flex-wrap">

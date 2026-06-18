@@ -21,6 +21,10 @@ const NAV_ITEMS = [
   { label: 'Leads', href: '/dashboard', icon: Users },
 ];
 
+// Replace with your actual WhatsApp number (digits only, with country code)
+const WHATSAPP_NUMBER = '2348000000000';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
@@ -64,10 +68,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <aside
         className={cn(
           'fixed lg:relative z-50 flex flex-col h-full bg-white border-r border-gray-200 transition-all duration-200 ease-in-out',
-          // Mobile: slide in/out
           'lg:translate-x-0',
           mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
-          // Desktop: collapsed or expanded
           collapsed ? 'w-[60px]' : 'w-[220px]'
         )}
       >
@@ -99,7 +101,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 py-4 overflow-y-auto">
+        <nav className="flex-1 py-3 overflow-y-auto space-y-1">
           {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
             const active = pathname === href;
             return (
