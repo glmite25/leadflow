@@ -1,6 +1,4 @@
 import { LeadForm } from '@/components/lead-form';
-import Link from 'next/link';
-import Image from 'next/image';
 import {
   Filter,
   Shield,
@@ -40,21 +38,6 @@ export default function Home() {
               </a>
             ))}
           </nav>
-
-          {/* CTA — avatar icon */}
-          <Link
-            href="/login"
-            className="flex items-center justify-center size-9 rounded-full border border-gray-200 bg-gray-50 hover:border-blue-200 transition-colors shrink-0 overflow-hidden"
-            title="Sign in to Dashboard"
-          >
-            <Image
-              src="/pers4.jpg"
-              alt="Sign in"
-              width={36}
-              height={36}
-              className="size-full object-cover"
-            />
-          </Link>
         </div>
       </header>
 
