@@ -1,82 +1,208 @@
 import { LeadForm } from '@/components/lead-form';
-import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import {
+  Clock,
+  Filter,
+  Shield,
+  Zap,
+  Heart,
+  Users,
+  ArrowRight,
+} from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-primary">LeadFlow</h1>
-            <p className="text-xs text-muted-foreground">CRM for Small Businesses</p>
+    <div className="min-h-screen bg-[#EEF2FF] flex flex-col">
+
+      {/* ── Navbar ───────────────────────────────────────────────────────── */}
+      <header className="sticky top-0 z-30 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+
+          {/* Logo */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            <div className="size-9 rounded-xl bg-blue-600 flex items-center justify-center">
+              <Users className="size-5 text-white" />
+            </div>
+            <div className="leading-none">
+              <p className="text-base font-bold text-gray-900">LeadFlow</p>
+              <p className="text-[10px] text-gray-400 mt-0.5">CRM for Small Businesses</p>
+            </div>
           </div>
-          <Link href="/dashboard">
-            <Button variant="outline">Dashboard</Button>
+
+          {/* Center nav — hidden on mobile */}
+          <nav className="hidden md:flex items-center gap-7">
+            {['Features', 'How It Works', 'Benefits', 'Pricing', 'About'].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTA */}
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-1.5 shrink-0 text-sm font-medium text-gray-800 hover:text-blue-600 transition-colors whitespace-nowrap"
+          >
+            Go to Dashboard
+            <ArrowRight className="size-4" />
           </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-4xl sm:text-5xl font-bold text-foreground">
-                Capture Every Lead
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Simple, fast lead management designed for small businesses. Start tracking your prospects today.
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <main className="flex-1">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+            {/* Left — copy */}
+            <div className="space-y-6 pt-2">
+
+              {/* Badge */}
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-blue-600">
+                <span className="size-1.5 rounded-full bg-blue-500 inline-block" />
+                Built for Small Businesses
+              </span>
+
+              {/* Headline */}
+              <div>
+                <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
+                  Capture Every Lead.
+                </h1>
+                <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
+                  Grow Your{' '}
+                  <span className="text-blue-600">Business.</span>
+                </h1>
+              </div>
+
+              {/* Subtext */}
+              <p className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
+                LeadFlow helps you capture, organize, and manage leads in one
+                place — so you can focus on what matters most: closing deals.
               </p>
+
+              {/* Checklist */}
+              <ul className="space-y-3">
+                {[
+                  'Quick lead capture in seconds',
+                  'Organize leads by status',
+                  'Never lose a prospect again',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                      <svg className="size-3 text-white" fill="none" viewBox="0 0 12 12">
+                        <path
+                          d="M2 6l3 3 5-5"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-sm sm:text-base text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Trust note */}
+              <div className="flex items-start gap-2.5 pt-1">
+                <Shield className="size-4 text-gray-400 mt-0.5 shrink-0" />
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  No complicated setup. No learning curve.<br />
+                  Just leads, organized and ready to close.
+                </p>
+              </div>
             </div>
 
-            {/* Benefits */}
-            <div className="space-y-3">
+            {/* Right — form */}
+            <div className="w-full lg:max-w-[480px] lg:ml-auto">
+              <LeadForm />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Feature Cards ─────────────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+            {/* Leads Captured */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex items-center gap-4">
+              <div className="size-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                <Clock className="size-5 text-blue-400" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Leads Captured</p>
+                <p className="text-xs text-gray-400 mt-1 leading-snug">
+                  Unlimited leads, captured<br className="hidden sm:block" /> and stored securely
+                </p>
+              </div>
+            </div>
+
+            {/* Status Levels */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex items-center gap-4">
+              <div className="size-12 rounded-xl bg-violet-500 flex items-center justify-center shrink-0">
+                <span className="text-xl font-bold text-white">5</span>
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Status Levels</p>
+                <p className="text-xs text-gray-400 mt-1 leading-snug">
+                  Track leads from New to Customer<br className="hidden sm:block" /> with our simple pipeline
+                </p>
+              </div>
+            </div>
+
+            {/* Search & Filter */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex items-center gap-4">
+              <div className="size-12 rounded-xl bg-emerald-400 flex items-center justify-center shrink-0">
+                <Filter className="size-5 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Search &amp; Filter</p>
+                <p className="text-xs text-gray-400 mt-1 leading-snug">
+                  Find any lead instantly with<br className="hidden sm:block" /> powerful search and filters
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Trust Bar ─────────────────────────────────────────────────── */}
+        <section className="border-t border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <p className="text-center text-sm font-medium text-gray-500 mb-8">
+              Trusted by small businesses and entrepreneurs
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               {[
-                'Quick lead capture in seconds',
-                'Organize leads by status',
-                'Never lose a prospect again',
-              ].map((benefit) => (
-                <div key={benefit} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 size-5 rounded-full bg-primary/20 flex items-center justify-center">
-                    <svg className="size-3 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <span className="text-foreground">{benefit}</span>
+                {
+                  icon: Shield,
+                  label: 'Secure & Reliable',
+                  sub: 'Your data is encrypted and safe',
+                },
+                {
+                  icon: Zap,
+                  label: 'Fast & Simple',
+                  sub: 'Get started in under 60 seconds',
+                },
+                {
+                  icon: Heart,
+                  label: 'Made for You',
+                  sub: 'Built specifically for small businesses',
+                },
+              ].map(({ icon: Icon, label, sub }) => (
+                <div key={label} className="flex flex-col items-center gap-2">
+                  <Icon className="size-5 text-gray-400" />
+                  <p className="text-sm font-semibold text-gray-800">{label}</p>
+                  <p className="text-xs text-gray-400">{sub}</p>
                 </div>
               ))}
             </div>
-
-            <p className="text-sm text-muted-foreground italic">
-              Built with Next.js, Supabase, and Tailwind CSS for reliability and speed.
-            </p>
           </div>
-
-          {/* Form */}
-          <div className="flex justify-center md:justify-end">
-            <LeadForm />
-          </div>
-        </div>
-
-        {/* Stats Section */}
-        <div className="mt-20 grid grid-cols-3 gap-4 sm:gap-8">
-          {[
-            { label: 'Leads Captured', value: '∞' },
-            { label: 'Status Levels', value: '5' },
-            { label: 'Search & Filter', value: '✓' },
-          ].map((stat) => (
-            <Card key={stat.label} className="text-center">
-              <CardContent className="pt-6">
-                <p className="text-2xl sm:text-3xl font-bold text-primary">{stat.value}</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-2">{stat.label}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        </section>
       </main>
     </div>
   );
