@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   Users,
@@ -11,8 +11,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Zap,
+  LogOut,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/lib/supabase';
 
 const NAV_ITEMS = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -25,8 +27,14 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/login');
+  };
 
   // Close mobile drawer on route change
   useEffect(() => {
@@ -122,6 +130,21 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {collapsed ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
+          </button>
+        </div>
+
+        {/* Sign out */}
+        <div className={cn('border-t border-gray-100 p-2', collapsed ? 'flex justify-center' : '')}>
+          <button
+            onClick={handleSignOut}
+            className={cn(
+              'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors w-full',
+              collapsed && 'justify-center px-2 w-auto'
+            )}
+            title={collapsed ? 'Sign out' : undefined}
+          >
+            <LogOut className="size-4 shrink-0" />
+            {!collapsed && <span>Sign out</span>}
           </button>
         </div>
       </aside>
