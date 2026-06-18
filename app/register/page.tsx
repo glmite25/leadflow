@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
-import { Zap, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Zap, Eye, EyeOff, Loader2, MailCheck } from 'lucide-react';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -15,6 +15,7 @@ export default function RegisterPage() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [registered, setRegistered] = useState(false);
 
   // Redirect if already logged in
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function RegisterPage() {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({ email, password });
 
     if (error) {
       setError(error.message);
@@ -46,9 +47,38 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push('/dashboard');
-    router.refresh();
+    // If a session was returned immediately, email confirmation is disabled — go straight to dashboard
+    if (data.session) {
+      router.replace('/dashboard');
+      return;
+    }
+
+    // Otherwise, email confirmation is required — show success message
+    setRegistered(true);
+    setLoading(false);
   };
+
+  if (registered) {
+    return (
+      <div className="min-h-screen bg-[#EEF2FF] flex items-center justify-center px-4">
+        <div className="w-full max-w-md text-center space-y-6">
+          <div className="size-16 rounded-full bg-green-100 flex items-center justify-center mx-auto">
+            <MailCheck className="size-8 text-green-600" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 mb-2">Check your email</h1>
+            <p className="text-sm text-gray-500">
+              We sent a confirmation link to <span className="font-medium text-gray-800">{email}</span>.
+              Click the link to activate your account and sign in.
+            </p>
+          </div>
+          <Link href="/login" className="inline-block text-sm text-blue-600 font-medium hover:underline">
+            Back to Sign In
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#EEF2FF] flex items-center justify-center px-4">
@@ -173,3 +203,4 @@ export default function RegisterPage() {
     </div>
   );
 }
+

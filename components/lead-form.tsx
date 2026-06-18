@@ -18,7 +18,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
     interest: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -142,7 +142,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             id="interest"
             name="interest"
             value={formData.interest}
-            onChange={(e) => setFormData((prev) => ({ ...prev, interest: e.target.value }))}
+            onChange={handleChange}
             disabled={loading}
             className="w-full h-11 px-3.5 rounded-lg border border-gray-300 bg-white text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors appearance-none"
           >

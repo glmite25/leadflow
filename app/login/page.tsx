@@ -5,8 +5,12 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Zap, Eye, EyeOff, Loader2 } from 'lucide-react';
-
 import { Suspense } from 'react';
+
+const ERROR_MESSAGES: Record<string, string> = {
+  missing_code: 'The confirmation link is invalid or has expired. Please try registering again.',
+  auth_callback_failed: 'Email confirmation failed. Please try again or contact support.',
+};
 
 function LoginForm() {
   const router = useRouter();
@@ -16,6 +20,14 @@ function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Show errors forwarded from the auth callback route
+  useEffect(() => {
+    const callbackError = searchParams.get('error');
+    if (callbackError) {
+      setError(ERROR_MESSAGES[callbackError] ?? 'Something went wrong. Please try again.');
+    }
+  }, [searchParams]);
 
   // Redirect if already logged in
   useEffect(() => {
@@ -37,9 +49,9 @@ function LoginForm() {
       return;
     }
 
+    // Use replace so the back button doesn't return to login
     const next = searchParams.get('next') || '/dashboard';
-    router.push(next);
-    router.refresh();
+    router.replace(next);
   };
 
   return (
