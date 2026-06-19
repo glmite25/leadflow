@@ -59,19 +59,23 @@ export default function Home() {
               {/* Headline */}
               <div>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
-                  How to Get Your First
+                  Free Class: How Nigerian
                 </h1>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
-                  <span className="text-blue-600">10 Paying Customers</span>
+                  Digital Sellers Get{' '}
+                  <span className="text-blue-600">Paying</span>
                 </h1>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
-                  Without Paid Ads.
+                  <span className="text-blue-600">Customers</span> (Even With
+                </h1>
+                <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mt-1">
+                  Zero Followers)
                 </h1>
               </div>
 
               {/* Subtext */}
               <p className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
-                A free, practical class for Nigerian business owners and freelancers who want more paying customers — without spending on ads or guessing what to do next.
+                A free, practical class for tech freelancers, digital marketers, content creators, and online entrepreneurs who want predictable customers — whether you have 0 followers or 50,000.
               </p>
 
               {/* Checklist */}
@@ -178,12 +182,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Trust Bar ─────────────────────────────────────────────────── */}
+        {/* Trust Bar ─────────────────────────────────────────────────── */}
         <section className="border-t border-gray-200 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <p className="text-center text-sm font-medium text-gray-500 mb-8">
-              Trusted by small businesses and entrepreneurs
+              Trusted by 30+ Digital Businesses
             </p>
+            <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
+              {['Freelancers', 'Agencies', 'Creators', 'E-commerce'].map((cat, i, arr) => (
+                <span key={cat} className="text-sm text-gray-500">
+                  {cat}{i < arr.length - 1 ? <span className="mx-2 text-gray-300">•</span> : ''}
+                </span>
+              ))}
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               {[
                 {

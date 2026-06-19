@@ -206,13 +206,10 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             className="w-full h-11 px-3.5 rounded-lg border border-gray-300 bg-white text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors appearance-none"
           >
             <option value="">-- Select one --</option>
-            <option value="I don't know how to get customers">I don't know how to get customers</option>
-            <option value="People show interest but never buy">People show interest but never buy</option>
-            <option value="I don't know how to price my services">I don't know how to price my services</option>
-            <option value="I have no online presence">I have no online presence</option>
-            <option value="I struggle with follow-up">I struggle with follow-up</option>
-            <option value="I don't know how to market myself">I don't know how to market myself</option>
-            <option value="I'm just starting out">I'm just starting out</option>
+            <option value="I have no followers or customers yet (just starting out)">I have no followers or customers yet (just starting out)</option>
+            <option value="I have followers but they don't buy">I have followers but they don't buy</option>
+            <option value="I get DMs but they never convert">I get DMs but they never convert</option>
+            <option value="I don't know how to follow up">I don't know how to follow up</option>
             <option value="Something else">Something else</option>
           </select>
         </div>
@@ -238,7 +235,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
           ) : (
             <>
               <Send className="size-4" />
-              Reserve My Free Spot
+              Reserve My Free Spot — Limited to 50
             </>
           )}
         </button>
