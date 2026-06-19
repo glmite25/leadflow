@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LeadFlow - Lead Management CRM',
+  title: 'Ojide - Lead Management CRM',
   description: 'Simple and fast lead management system for small businesses. Capture, organize, and track your leads effortlessly.',
   icons: {
     icon: '/logo.png',

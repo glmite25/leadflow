@@ -90,7 +90,7 @@ export default function RegisterPage() {
             <Zap className="size-5 text-white" />
           </div>
           <div className="leading-none">
-            <p className="text-base font-bold text-gray-900">LeadFlow</p>
+            <p className="text-base font-bold text-gray-900">Ojide</p>
             <p className="text-[10px] text-gray-400 mt-0.5">CRM for Small Businesses</p>
           </div>
         </Link>
@@ -98,7 +98,7 @@ export default function RegisterPage() {
         {/* Card */}
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm px-6 py-8">
           <h1 className="text-xl font-bold text-gray-900 mb-1">Create your account</h1>
-          <p className="text-sm text-gray-400 mb-6">Get started with LeadFlow for free</p>
+          <p className="text-sm text-gray-400 mb-6">Get started with Ojide for free</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
