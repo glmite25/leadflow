@@ -28,17 +28,47 @@ export async function getLeads(
   return data as Lead[];
 }
 
+export function normalizePhoneNumber(phone: string): string {
+  // Strip all non-numeric characters
+  const digits = phone.replace(/\D/g, '');
+  
+  // Handle standard Nigerian numbers (e.g. 08031234567 -> 2348031234567)
+  if (digits.length === 11 && digits.startsWith('0')) {
+    return '234' + digits.slice(1);
+  }
+  
+  return digits;
+}
+
 export async function createLead(
   name: string,
   phone: string,
   email?: string,
   interest?: string
 ): Promise<Lead> {
+  const normalizedPhone = normalizePhoneNumber(phone);
+
+  // Check if lead already exists with this phone number (checking both normalized and raw)
+  const { data: existingLead, error: checkError } = await supabase
+    .from('leads')
+    .select('id')
+    .or(`phone.eq.${normalizedPhone},phone.eq.${phone}`)
+    .limit(1)
+    .maybeSingle();
+
+  if (checkError) {
+    throw new Error(`Failed to check existing leads: ${checkError.message}`);
+  }
+
+  if (existingLead) {
+    throw new Error('This phone number is already registered.');
+  }
+
   const { data, error } = await supabase
     .from('leads')
     .insert({
       name,
-      phone,
+      phone: normalizedPhone, // Store normalized phone for consistency
       email: email || null,
       interest: interest || null,
       status: 'New',

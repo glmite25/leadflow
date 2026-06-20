@@ -36,9 +36,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ data: lead }, { status: 201 });
   } catch (error) {
     console.error('POST /api/leads error:', error);
+    const message = error instanceof Error ? error.message : 'Failed to create lead';
+    const status = message.includes('already registered') ? 400 : 500;
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to create lead' },
-      { status: 500 }
+      { error: message },
+      { status }
     );
   }
 }
