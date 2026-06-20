@@ -1,5 +1,6 @@
 import { LeadForm } from '@/components/lead-form';
 import { CountdownTimer } from '@/components/countdown-timer';
+import { HeroAnimated } from '@/components/hero-animated';
 import {
   Filter,
   Shield,
@@ -49,16 +50,17 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
             {/* Left — copy */}
+            <HeroAnimated>
             <div className="space-y-6 pt-2">
 
               {/* Badge */}
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-blue-600">
+              <span data-animate className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-medium text-blue-600">
                 <span className="size-1.5 rounded-full bg-blue-500 inline-block" />
                 Free Class — Limited Spots
               </span>
 
               {/* Headline */}
-              <div>
+              <div data-animate>
                 <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
                   Free Class: How Nigerian
                 </h1>
@@ -75,12 +77,12 @@ export default function Home() {
               </div>
 
               {/* Subtext */}
-              <p className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
+              <p data-animate className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
                 A free, practical class for tech freelancers, digital marketers, content creators, and online entrepreneurs who want predictable customers — whether you have 0 followers or 50,000.
               </p>
 
               {/* Checklist */}
-              <ul className="space-y-3">
+              <ul data-animate className="space-y-3">
                 {[
                   'Build a lead capture system that works even with zero followers',
                   'Set up a DM system that never misses a potential customer',
@@ -117,10 +119,12 @@ export default function Home() {
               </ul>
 
               {/* Countdown */}
-              <CountdownTimer />
+              <div data-animate>
+                <CountdownTimer />
+              </div>
 
               {/* Trust note */}
-              <div className="flex items-start gap-2.5 pt-1">
+              <div data-animate className="flex items-start gap-2.5 pt-1">
                 <Shield className="size-4 text-gray-400 mt-0.5 shrink-0" />
                 <p className="text-xs text-gray-400 leading-relaxed">
                   100% free. No catch. No credit card.<br />
@@ -128,11 +132,14 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            </HeroAnimated>
 
             {/* Right — form */}
-            <div className="w-full lg:max-w-[480px] lg:ml-auto">
-              <LeadForm />
-            </div>
+            <HeroAnimated>
+              <div data-animate className="w-full lg:max-w-[480px] lg:ml-auto">
+                <LeadForm />
+              </div>
+            </HeroAnimated>
           </div>
         </section>
 

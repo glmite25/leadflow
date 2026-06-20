@@ -245,7 +245,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="btn-shimmer w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>

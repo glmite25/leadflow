@@ -167,3 +167,37 @@
     @apply font-sans;
   }
 }
+
+/* ── CTA button shimmer ─────────────────────────────────────────────── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transition: left 0.4s ease;
+}
+.btn-shimmer:hover::after {
+  left: 150%;
+}
+
+/* ── Countdown number tick pulse ────────────────────────────────────── */
+@keyframes tick-pulse {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.08); }
+  50%  { transform: scale(1); }
+}
+.tick-pulse {
+  animation: tick-pulse 0.25s ease;
+}

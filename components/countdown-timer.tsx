@@ -26,10 +26,16 @@ function getTimeLeft(): TimeLeft {
 export function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeft());
   const [mounted, setMounted] = useState(false);
+  const [pulse, setPulse] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const interval = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeLeft());
+      // Trigger pulse on every second tick
+      setPulse(true);
+      setTimeout(() => setPulse(false), 260);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -58,10 +64,10 @@ export function CountdownTimer() {
               { value: timeLeft.days, label: 'Days' },
               { value: timeLeft.hours, label: 'Hours' },
               { value: timeLeft.minutes, label: 'Mins' },
-              { value: timeLeft.seconds, label: 'Secs' },
-            ].map(({ value, label }) => (
+              { value: timeLeft.seconds, label: 'Secs', isPulse: true },
+            ].map(({ value, label, isPulse }) => (
               <div key={label} className="flex flex-col items-center">
-                <span className="text-2xl font-extrabold text-amber-700 tabular-nums w-10 text-center">
+                <span className={`text-2xl font-extrabold text-amber-700 tabular-nums w-10 text-center${isPulse && pulse ? ' tick-pulse' : ''}`}>
                   {String(value).padStart(2, '0')}
                 </span>
                 <span className="text-[10px] text-amber-500 font-medium uppercase tracking-wide mt-0.5">
