@@ -136,6 +136,43 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Checklist Lead Hook ───────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8 pb-10">
+          <div className="bg-gray-900 rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+            {/* Icon */}
+            <div className="size-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+              <Download className="size-7 text-white" />
+            </div>
+
+            {/* Copy */}
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-1">
+                Can't make the class?
+              </p>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+                Download the FREE{' '}
+                <span className="text-blue-400">"First 5 Customers"</span>{' '}
+                Checklist
+              </h3>
+              <p className="text-sm text-gray-400 mt-2">
+                Sign up above and start getting customers TODAY — even if you can't attend live.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="shrink-0 w-full sm:w-auto">
+              <p className="text-xs text-gray-500 text-center sm:text-right mb-2">
+                Free after sign up ↑
+              </p>
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-medium">
+                <Download className="size-4 shrink-0 text-blue-400" />
+                Download Now →
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         {/* ── Feature Cards ─────────────────────────────────────────────── */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -168,7 +205,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* AI Content Funnels */}
+            {/* AI Content Funnels 
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex items-center gap-4">
               <div className="size-12 rounded-xl bg-blue-500 flex items-center justify-center shrink-0">
                 <Zap className="size-5 text-white" />
@@ -179,43 +216,7 @@ export default function Home() {
                   Find any lead instantly with<br className="hidden sm:block" /> powerful search and filters
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Checklist Lead Hook ───────────────────────────────────────── */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-          <div className="bg-gray-900 rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
-            {/* Icon */}
-            <div className="size-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
-              <Download className="size-7 text-white" />
-            </div>
-
-            {/* Copy */}
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-1">
-                Can't make the class?
-              </p>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-snug">
-                Download the FREE{' '}
-                <span className="text-blue-400">"First 5 Customers"</span>{' '}
-                Checklist
-              </h3>
-              <p className="text-sm text-gray-400 mt-2">
-                Sign up above and start getting customers TODAY — even if you can't attend live.
-              </p>
-            </div>
-
-            {/* CTA */}
-            <div className="shrink-0 w-full sm:w-auto">
-              <p className="text-xs text-gray-500 text-center sm:text-right mb-2">
-                Free after sign up ↑
-              </p>
-              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-medium">
-                <Download className="size-4 shrink-0 text-blue-400" />
-                Download Now →
-              </div>
-            </div>
+            </div>*/}
           </div>
         </section>
 
