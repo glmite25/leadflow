@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Lock, Send, Users, ExternalLink } from 'lucide-react';
+import { Lock, Send, Users, ExternalLink, Download } from 'lucide-react';
 
 // WhatsApp group link — set NEXT_PUBLIC_WHATSAPP_GROUP_URL in your .env.local
 const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || '';
+
+// First 5 Customers checklist PDF — set NEXT_PUBLIC_CHECKLIST_URL in your .env.local
+const CHECKLIST_URL = process.env.NEXT_PUBLIC_CHECKLIST_URL || '';
 
 interface LeadFormProps {
   onSuccess?: () => void;
@@ -114,6 +117,23 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
             ) : (
               <p className="text-sm text-gray-500">
                 We'll send the WhatsApp group link to your number shortly.
+              </p>
+            )}
+
+            {/* Checklist download */}
+            {CHECKLIST_URL ? (
+              <a
+                href={CHECKLIST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full h-11 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 text-sm font-semibold transition-colors"
+              >
+                <Download className="size-4 shrink-0" />
+                Download the Free "First 5 Customers" Checklist
+              </a>
+            ) : (
+              <p className="text-xs text-gray-400 text-center">
+                📄 The "First 5 Customers" checklist will be sent to your WhatsApp shortly.
               </p>
             )}
 

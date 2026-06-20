@@ -6,6 +6,7 @@ import {
   Zap,
   Heart,
   Users,
+  Download,
 } from 'lucide-react';
 
 export default function Home() {
@@ -81,9 +82,9 @@ export default function Home() {
               {/* Checklist */}
               <ul className="space-y-3">
                 {[
-                  'Learn how to position yourself so customers come to you',
-                  'Discover where your best customers are hiding',
-                  'Get a simple follow-up system that closes deals',
+                  'Build a lead capture system that works even with zero followers',
+                  'Set up a DM system that never misses a potential customer',
+                  'Create a follow-up sequence that converts without being pushy',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="size-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
@@ -108,9 +109,9 @@ export default function Home() {
                     </svg>
                   </span>
                   <span className="text-sm sm:text-base text-gray-700">
-                    See the{' '}
+                    Use{' '}
                     <span className="font-bold text-base sm:text-lg text-gray-900">AI tools</span>
-                    {' '}that make follow-up effortless — even if you're not techy
+                    {' '}to automate follow-ups — even if you're not techy
                   </span>
                 </li>
               </ul>
@@ -177,6 +178,42 @@ export default function Home() {
                 <p className="text-xs text-gray-400 mt-1 leading-snug">
                   Find any lead instantly with<br className="hidden sm:block" /> powerful search and filters
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Checklist Lead Hook ───────────────────────────────────────── */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+          <div className="bg-gray-900 rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+            {/* Icon */}
+            <div className="size-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+              <Download className="size-7 text-white" />
+            </div>
+
+            {/* Copy */}
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-1">
+                Can't make the class?
+              </p>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+                Download the FREE{' '}
+                <span className="text-blue-400">"First 5 Customers"</span>{' '}
+                Checklist
+              </h3>
+              <p className="text-sm text-gray-400 mt-2">
+                Sign up above and start getting customers TODAY — even if you can't attend live.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="shrink-0 w-full sm:w-auto">
+              <p className="text-xs text-gray-500 text-center sm:text-right mb-2">
+                Free after sign up ↑
+              </p>
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-medium">
+                <Download className="size-4 shrink-0 text-blue-400" />
+                Download Now →
               </div>
             </div>
           </div>
