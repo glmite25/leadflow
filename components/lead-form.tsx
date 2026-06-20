@@ -9,6 +9,59 @@ const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || '';
 // First 5 Customers checklist PDF — set NEXT_PUBLIC_CHECKLIST_URL in your .env.local
 const CHECKLIST_URL = process.env.NEXT_PUBLIC_CHECKLIST_URL || '';
 
+const DISPOSABLE_EMAIL_DOMAINS = [
+  'mailinator.com',
+  'yopmail.com',
+  'tempmail.com',
+  'temp-mail.org',
+  'guerrillamail.com',
+  '10minutemail.com',
+  'trashmail.com',
+  'getairmail.com',
+  'sharklasers.com',
+  'dispostable.com',
+  'dropmail.me',
+  'maildrop.cc'
+];
+
+function normalizePhoneNumber(phone: string): string {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 11 && digits.startsWith('0')) {
+    return '234' + digits.slice(1);
+  }
+  return digits;
+}
+
+function validateEmail(email: string): { isValid: boolean; reason?: string } {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { isValid: false, reason: 'Invalid email address format' };
+  }
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (domain && DISPOSABLE_EMAIL_DOMAINS.includes(domain)) {
+    return { isValid: false, reason: 'Temporary/disposable emails are not allowed' };
+  }
+  return { isValid: true };
+}
+
+function validatePhone(normalizedPhone: string): { isValid: boolean; reason?: string } {
+  if (!/^\d+$/.test(normalizedPhone)) {
+    return { isValid: false, reason: 'Phone number must contain only digits' };
+  }
+  if (!normalizedPhone.startsWith('234')) {
+    return { isValid: false, reason: 'Please use a valid phone number (Nigerian number starting with 0 or +234)' };
+  }
+  if (normalizedPhone.length !== 13) {
+    return { isValid: false, reason: 'Phone number must be a valid 11-digit mobile number' };
+  }
+  const prefix = normalizedPhone.slice(3, 5);
+  const validPrefixes = ['70', '80', '81', '90', '91'];
+  if (!validPrefixes.includes(prefix)) {
+    return { isValid: false, reason: 'Please use a valid mobile number starting with a recognized prefix (e.g. 080, 070, 081, 090, 091)' };
+  }
+  return { isValid: true };
+}
+
 interface LeadFormProps {
   onSuccess?: () => void;
 }
@@ -32,8 +85,15 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
   const validate = () => {
     if (!formData.name.trim()) return 'Name is required';
     if (!formData.phone.trim()) return 'Phone number is required';
-    if (formData.phone.trim().length < 10) return 'Phone must be at least 10 characters';
-    if (formData.email && !formData.email.includes('@')) return 'Please enter a valid email';
+    
+    const normalized = normalizePhoneNumber(formData.phone);
+    const phoneVal = validatePhone(normalized);
+    if (!phoneVal.isValid) return phoneVal.reason;
+
+    if (formData.email && formData.email.trim() !== '') {
+      const emailVal = validateEmail(formData.email.trim());
+      if (!emailVal.isValid) return emailVal.reason;
+    }
     return null;
   };
 

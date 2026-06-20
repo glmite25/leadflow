@@ -37,7 +37,16 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('POST /api/leads error:', error);
     const message = error instanceof Error ? error.message : 'Failed to create lead';
-    const status = message.includes('already registered') ? 400 : 500;
+    const badRequestKeywords = [
+      'already registered',
+      'invalid email',
+      'not allowed',
+      'must contain only digits',
+      'must be a valid',
+      'please use a valid'
+    ];
+    const isBadRequest = badRequestKeywords.some(keyword => message.toLowerCase().includes(keyword));
+    const status = isBadRequest ? 400 : 500;
     return NextResponse.json(
       { error: message },
       { status }

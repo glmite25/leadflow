@@ -40,6 +40,61 @@ export function normalizePhoneNumber(phone: string): string {
   return digits;
 }
 
+const DISPOSABLE_EMAIL_DOMAINS = [
+  'mailinator.com',
+  'yopmail.com',
+  'tempmail.com',
+  'temp-mail.org',
+  'guerrillamail.com',
+  '10minutemail.com',
+  'trashmail.com',
+  'getairmail.com',
+  'sharklasers.com',
+  'dispostable.com',
+  'dropmail.me',
+  'maildrop.cc'
+];
+
+export function validateEmail(email: string): { isValid: boolean; reason?: string } {
+  // Simple regex check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { isValid: false, reason: 'Invalid email address format' };
+  }
+
+  // Domain check
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (domain && DISPOSABLE_EMAIL_DOMAINS.includes(domain)) {
+    return { isValid: false, reason: 'Temporary/disposable emails are not allowed' };
+  }
+
+  return { isValid: true };
+}
+
+export function validatePhone(normalizedPhone: string): { isValid: boolean; reason?: string } {
+  // Check that the normalized phone number is digits-only
+  if (!/^\d+$/.test(normalizedPhone)) {
+    return { isValid: false, reason: 'Phone number must contain only digits' };
+  }
+
+  // Nigerian phone number validation
+  if (!normalizedPhone.startsWith('234')) {
+    return { isValid: false, reason: 'Please use a valid phone number (Nigerian number starting with 0 or +234)' };
+  }
+
+  if (normalizedPhone.length !== 13) {
+    return { isValid: false, reason: 'Phone number must be a valid 11-digit mobile number' };
+  }
+
+  const prefix = normalizedPhone.slice(3, 5); // get the two digits after 234
+  const validPrefixes = ['70', '80', '81', '90', '91'];
+  if (!validPrefixes.includes(prefix)) {
+    return { isValid: false, reason: 'Please use a valid mobile number starting with a recognized prefix (e.g. 080, 070, 081, 090, 091)' };
+  }
+
+  return { isValid: true };
+}
+
 export async function createLead(
   name: string,
   phone: string,
@@ -48,20 +103,53 @@ export async function createLead(
 ): Promise<Lead> {
   const normalizedPhone = normalizePhoneNumber(phone);
 
+  // Validate phone number structure
+  const phoneValidation = validatePhone(normalizedPhone);
+  if (!phoneValidation.isValid) {
+    throw new Error(phoneValidation.reason);
+  }
+
+  // Validate email if provided
+  if (email && email.trim() !== '') {
+    const emailValidation = validateEmail(email.trim());
+    if (!emailValidation.isValid) {
+      throw new Error(emailValidation.reason);
+    }
+  }
+
   // Check if lead already exists with this phone number (checking both normalized and raw)
-  const { data: existingLead, error: checkError } = await supabase
+  const { data: existingPhoneLead, error: phoneCheckError } = await supabase
     .from('leads')
     .select('id')
     .or(`phone.eq.${normalizedPhone},phone.eq.${phone}`)
     .limit(1)
     .maybeSingle();
 
-  if (checkError) {
-    throw new Error(`Failed to check existing leads: ${checkError.message}`);
+  if (phoneCheckError) {
+    throw new Error(`Failed to check existing leads: ${phoneCheckError.message}`);
   }
 
-  if (existingLead) {
+  if (existingPhoneLead) {
     throw new Error('This phone number is already registered.');
+  }
+
+  // Check if lead already exists with this email (if email is provided)
+  if (email && email.trim() !== '') {
+    const cleanEmail = email.trim().toLowerCase();
+    const { data: existingEmailLead, error: emailCheckError } = await supabase
+      .from('leads')
+      .select('id')
+      .eq('email', cleanEmail)
+      .limit(1)
+      .maybeSingle();
+
+    if (emailCheckError) {
+      throw new Error(`Failed to check existing emails: ${emailCheckError.message}`);
+    }
+
+    if (existingEmailLead) {
+      throw new Error('This email address is already registered.');
+    }
   }
 
   const { data, error } = await supabase
@@ -69,7 +157,7 @@ export async function createLead(
     .insert({
       name,
       phone: normalizedPhone, // Store normalized phone for consistency
-      email: email || null,
+      email: email ? email.trim().toLowerCase() : null,
       interest: interest || null,
       status: 'New',
     })
