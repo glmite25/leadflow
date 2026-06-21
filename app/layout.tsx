@@ -10,8 +10,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Ojide - Lead Management CRM',
-  description: 'Simple and fast lead management system for small businesses. Capture, organize, and track your leads effortlessly.',
+  title: 'Ojidé — Free Class: Get Your First 5 Paying Customers',
+  description: 'A free, practical class for Nigerian digital sellers, freelancers, and online entrepreneurs who want predictable customers — even with zero followers.',
   icons: {
     icon: '/logo.png',
     apple: '/logo.png',

@@ -24,23 +24,11 @@ export default function Home() {
               <Users className="size-5 text-white" />
             </div>
             <div className="leading-none">
-              <p className="text-base font-bold text-gray-900">Ojide</p>
-              <p className="text-[10px] text-gray-400 mt-0.5">CRM for Businesses</p>
+              <p className="text-base font-bold text-gray-900">Ojidé</p>
+              <p className="text-[10px] text-gray-400 mt-0.5">Lead Capture & Customer Acquisition System</p>
             </div>
           </div>
 
-          {/* Center nav — hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-7">
-            {['Features', 'How It Works', 'Benefits', 'Pricing', 'About'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
         </div>
       </header>
 
@@ -80,6 +68,17 @@ export default function Home() {
               <p data-animate className="text-base sm:text-lg text-gray-500 max-w-md leading-relaxed">
                 A free, practical class for tech freelancers, digital marketers, content creators, and online entrepreneurs who want predictable customers — whether you have 0 followers or 50,000.
               </p>
+
+              {/* Instructor credibility */}
+              <div data-animate className="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
+                <div className="size-8 rounded-full bg-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-xs font-bold text-white">OI</span>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Taught by{' '}
+                  <span className="font-semibold text-gray-900">Olajide Igbalaye</span>, a Customer Acquisition Specialist who has built 20+ lead systems and supported 30+ Nigerian businesses — including realtors, schools, and clinics — get more paying customers without guesswork.
+                </p>
+              </div>
 
               {/* Checklist */}
               <ul data-animate className="space-y-3">
@@ -230,13 +229,13 @@ export default function Home() {
         {/* Trust Bar ─────────────────────────────────────────────────── */}
         <section className="border-t border-gray-200 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <p className="text-center text-sm font-medium text-gray-500 mb-8">
-              Trusted by 30+ Digital Businesses
+            <p className="text-center text-sm font-medium text-gray-500 mb-4">
+              Trusted by 30+ Nigerian Businesses
             </p>
             <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
-              {['Freelancers', 'Agencies', 'Creators', 'E-commerce'].map((cat, i, arr) => (
-                <span key={cat} className="text-sm text-gray-500">
-                  {cat}{i < arr.length - 1 ? <span className="mx-2 text-gray-300">•</span> : ''}
+              {['Freelancers', 'Agencies', 'Creators', 'E-commerce', 'Realtors', 'Schools', 'Clinics'].map((cat, i, arr) => (
+                <span key={cat} className="text-sm text-gray-500 flex items-center gap-2">
+                  {cat}{i < arr.length - 1 ? <span className="text-gray-300">·</span> : ''}
                 </span>
               ))}
             </div>
@@ -244,18 +243,18 @@ export default function Home() {
               {[
                 {
                   icon: Shield,
-                  label: 'Service Businesses',
-                  sub: 'Freelancers, consultants, coaches, and agency owners',
+                  label: 'Secure & Reliable',
+                  sub: 'Your data is encrypted and safe',
                 },
                 {
                   icon: Zap,
-                  label: 'Fast & Simple',
-                  sub: 'Get started in under 60 seconds',
+                  label: 'Freelancers · Agencies · Creators',
+                  sub: 'Built for Nigerian digital entrepreneurs',
                 },
                 {
                   icon: Heart,
-                  label: 'Made for You',
-                  sub: 'Built specifically for small businesses',
+                  label: 'E-commerce · Realtors · Schools · Clinics',
+                  sub: 'Every type of Nigerian business',
                 },
               ].map(({ icon: Icon, label, sub }) => (
                 <div key={label} className="flex flex-col items-center gap-2">
