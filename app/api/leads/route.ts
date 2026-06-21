@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createLead, getLeads } from '@/lib/api';
+import { sendNewLeadNotification } from '@/lib/whatsapp';
 
 export async function GET(request: NextRequest) {
   try {
@@ -33,6 +34,12 @@ export async function POST(request: NextRequest) {
     }
 
     const lead = await createLead(name, phone, email, interest);
+
+    // Fire-and-forget WhatsApp notification — don't block the response
+    sendNewLeadNotification(lead).catch((err) =>
+      console.error('WhatsApp notify error:', err)
+    );
+
     return NextResponse.json({ data: lead }, { status: 201 });
   } catch (error) {
     console.error('POST /api/leads error:', error);
