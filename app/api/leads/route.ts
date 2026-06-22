@@ -35,10 +35,14 @@ export async function POST(request: NextRequest) {
 
     const lead = await createLead(name, phone, email, interest);
 
-    // Fire-and-forget WhatsApp notification — don't block the response
-    sendNewLeadNotification(lead).catch((err) =>
-      console.error('WhatsApp notify error:', err)
-    );
+    // Await the notification — on serverless we must not fire-and-forget
+    // as the function may terminate before the async call completes
+    try {
+      await sendNewLeadNotification(lead);
+    } catch (err) {
+      // Don't fail the request if notification fails — just log it
+      console.error('WhatsApp notify error:', err);
+    }
 
     return NextResponse.json({ data: lead }, { status: 201 });
   } catch (error) {
