@@ -84,16 +84,18 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
 
   const validate = () => {
     if (!formData.name.trim()) return 'Name is required';
-    if (!formData.phone.trim()) return 'Phone number is required';
     
+    if (!formData.email.trim()) return 'Email is required';
+    const emailVal = validateEmail(formData.email.trim());
+    if (!emailVal.isValid) return emailVal.reason;
+
+    if (!formData.phone.trim()) return 'Phone number is required';
     const normalized = normalizePhoneNumber(formData.phone);
     const phoneVal = validatePhone(normalized);
     if (!phoneVal.isValid) return phoneVal.reason;
 
-    if (formData.email && formData.email.trim() !== '') {
-      const emailVal = validateEmail(formData.email.trim());
-      if (!emailVal.isValid) return emailVal.reason;
-    }
+    if (!formData.interest) return 'Please select your biggest challenge';
+    
     return null;
   };
 
@@ -241,7 +243,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         {/* Email */}
         <div className="space-y-1.5">
           <label htmlFor="email" className="text-sm font-medium text-gray-700">
-            Email
+            Email <span className="text-gray-900">*</span>
           </label>
           <input
             id="email"
@@ -275,7 +277,7 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         {/* Interest */}
         <div className="space-y-1.5">
           <label htmlFor="interest" className="text-sm font-medium text-gray-700">
-            What's your biggest challenge right now?
+            What's your biggest challenge right now? <span className="text-gray-900">*</span>
           </label>
           <select
             id="interest"
