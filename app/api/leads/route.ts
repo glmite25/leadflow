@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createLead, getLeads } from '@/lib/api';
-import { sendNewLeadNotification } from '@/lib/whatsapp';
 
 export async function GET(request: NextRequest) {
   try {
@@ -35,14 +34,9 @@ export async function POST(request: NextRequest) {
 
     const lead = await createLead(name, phone, email, interest);
 
-    // Await the notification — on serverless we must not fire-and-forget
-    // as the function may terminate before the async call completes
-    try {
-      await sendNewLeadNotification(lead);
-    } catch (err) {
-      // Don't fail the request if notification fails — just log it
-      console.error('WhatsApp notify error:', err);
-    }
+    // WhatsApp notification is handled exclusively by the Supabase DB webhook
+    // → POST /api/notify fires automatically on every INSERT into the leads table.
+    // Do NOT call sendNewLeadNotification here — that would send a double message.
 
     return NextResponse.json({ data: lead }, { status: 201 });
   } catch (error) {
