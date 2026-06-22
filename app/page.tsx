@@ -1,6 +1,7 @@
 import { LeadForm } from '@/components/lead-form';
 import { CountdownTimer } from '@/components/countdown-timer';
 import { HeroAnimated } from '@/components/hero-animated';
+import Link from 'next/link';
 import {
   Filter,
   Shield,
@@ -267,6 +268,21 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* ── Footer ───────────────────────────────────────────────────────── */}
+      <footer className="border-t border-gray-200 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs text-gray-400">© {new Date().getFullYear()} Ojidé. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+              Privacy Policy
+            </Link>
+            <a href="mailto:gigsdev007@gmail.com" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+              Contact
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
