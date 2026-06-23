@@ -66,6 +66,6 @@ coverage/
 .turbo/
 *.pem
 
-# ── Lock files (project uses pnpm) ───────────────────────────────────────────
-package-lock.json
+# ── Lock files (project uses npm) ────────────────────────────────────────────
+pnpm-lock.yaml
 yarn.lock
