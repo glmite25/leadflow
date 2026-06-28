@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-// Class date: Saturday June 28, 2026 at 7:00 PM WAT (UTC+1)
-const CLASS_DATE = new Date('2026-06-28T19:00:00+01:00');
+// Class date: Saturday July 5, 2026 at 7:00 PM WAT (UTC+1)
+const CLASS_DATE = new Date('2026-07-05T19:00:00+01:00');
 
 interface TimeLeft {
   days: number;
@@ -50,7 +50,7 @@ export function CountdownTimer() {
       <div className="flex items-center gap-2 mb-3">
         <span className="size-2 rounded-full bg-amber-500 animate-pulse inline-block shrink-0" />
         <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide">
-          Saturday, June 28th · 7:00 PM WAT · Google Meet
+          Saturday, July 5th · 7:00 PM WAT · Google Meet
         </p>
       </div>
 

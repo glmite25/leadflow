@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Privacy Policy — Ojidé',
-  description: 'Privacy Policy for Ojidé Lead Capture & Customer Acquisition System',
+  title: 'Privacy Policy — LidFlo',
+  description: 'Privacy Policy for LidFlo Lead Capture & Customer Acquisition System',
 };
 
 export default function PrivacyPolicy() {
@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-base font-bold text-gray-900 mb-2">1. About This Policy</h2>
               <p>
-                This Privacy Policy explains how Ojidé ("we", "us", or "our"), operated by Olajide Igbalaye,
+                This Privacy Policy explains how LidFlo ("we", "us", or "our"), operated by Olajide Igbalaye,
                 collects, uses, and protects your personal information when you use our website at{' '}
                 <a href="https://ojide.vercel.app" className="text-blue-600 hover:underline">
                   ojide.vercel.app

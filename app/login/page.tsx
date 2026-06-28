@@ -64,7 +64,7 @@ function LoginForm() {
             <Zap className="size-5 text-white" />
           </div>
           <div className="leading-none">
-            <p className="text-base font-bold text-gray-900">Ojidé</p>
+            <p className="text-base font-bold text-gray-900">LidFlo</p>
             <p className="text-[10px] text-gray-400 mt-0.5">Lead Capture & Customer Acquisition</p>
           </div>
         </Link>

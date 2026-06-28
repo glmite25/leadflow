@@ -1,5 +1,5 @@
-# Product Requirements Document (PRD)
-## Ojidé — Lead Capture & Customer Acquisition System
+﻿# Product Requirements Document (PRD)
+## LidFlo — Lead Capture & Customer Acquisition System
 
 **Version:** 1.0  
 **Author:** Olajide Igbalaye  
@@ -13,11 +13,11 @@
 
 ### 1.1 Summary
 
-Ojidé is a full-stack lead capture and customer acquisition system built for Nigerian digital entrepreneurs, freelancers, agencies, content creators, and service businesses. The primary surface is a public-facing landing page that collects prospective customer leads (name, email, phone, biggest challenge) for a free class event. Leads are stored in a private database, the business owner receives an instant WhatsApp notification for every new lead, and a password-protected admin dashboard provides full lead management including status tracking, search, filtering, and CSV export.
+LidFlo is a full-stack lead capture and customer acquisition system built for Nigerian digital entrepreneurs, freelancers, agencies, content creators, and service businesses. The primary surface is a public-facing landing page that collects prospective customer leads (name, email, phone, biggest challenge) for a free class event. Leads are stored in a private database, the business owner receives an instant WhatsApp notification for every new lead, and a password-protected admin dashboard provides full lead management including status tracking, search, filtering, and CSV export.
 
 ### 1.2 Business Context
 
-Most Nigerian small businesses have no structured lead system — prospects enquire and disappear. Ojidé solves this by:
+Most Nigerian small businesses have no structured lead system — prospects enquire and disappear. LidFlo solves this by:
 
 1. Capturing leads from a single high-converting landing page
 2. Instantly notifying the owner via WhatsApp so no lead goes cold
@@ -157,7 +157,7 @@ INSERT into leads table
 
 **Message format:**
 ```
-🔔 *New Lead — Ojidé*
+🔔 *New Lead — LidFlo*
 
 👤 *Name:* [name]
 📱 *Phone:* [phone]

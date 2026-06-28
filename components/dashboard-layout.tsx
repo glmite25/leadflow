@@ -83,7 +83,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="size-7 rounded-lg bg-violet-600 flex items-center justify-center">
                 <Zap className="size-4 text-white" />
               </div>
-              <span className="font-semibold text-sm text-gray-900">Ojide</span>
+              <span className="font-semibold text-sm text-gray-900">LidFlo</span>
             </div>
           )}
           {collapsed && (

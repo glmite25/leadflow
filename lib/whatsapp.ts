@@ -63,7 +63,7 @@ export function formatLeadNotification(lead: {
   interest?: string | null;
 }): string {
   const lines = [
-    '🔔 *New Lead — Ojidé*',
+    '🔔 *New Lead — LidFlo*',
     '',
     `👤 *Name:* ${lead.name}`,
     `📱 *Phone:* ${lead.phone}`,

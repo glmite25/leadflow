@@ -92,7 +92,7 @@ export function LeadsTable({ leads, onRowClick, isUpdating }: LeadsTableProps) {
                           cleanedPhone = '234' + cleanedPhone.substring(1);
                         }
                         const waUrl = `https://wa.me/${cleanedPhone}?text=${encodeURIComponent(
-                          `Hello ${lead.name}, I am reaching out from Ojide regarding your interest in "${lead.interest || 'our services'}".`
+                          `Hello ${lead.name}, I am reaching out from LidFlo regarding your interest in "${lead.interest || 'our services'}".`
                         )}`;
                         return (
                           <a

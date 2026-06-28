@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Ojidé — Free Class: Get Your First 5 Paying Customers',
+  title: 'LidFlo — Free Class: Get Your First 5 Paying Customers',
   description: 'A free, practical class for Nigerian digital sellers, freelancers, and online entrepreneurs who want predictable customers — even with zero followers.',
   icons: {
     icon: '/logo.png',

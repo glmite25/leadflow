@@ -25,7 +25,7 @@ export default function Home() {
               <Users className="size-5 text-white" />
             </div>
             <div className="leading-none">
-              <p className="text-base font-bold text-gray-900">Ojidé</p>
+              <p className="text-base font-bold text-gray-900">LidFlo</p>
               <p className="text-[10px] text-gray-400 mt-0.5">Lead Capture & Customer Acquisition System</p>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function Home() {
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <footer className="border-t border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-400">© {new Date().getFullYear()} Ojidé. All rights reserved.</p>
+          <p className="text-xs text-gray-400">© {new Date().getFullYear()} LidFlo. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
               Privacy Policy
